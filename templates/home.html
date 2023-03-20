@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LMS</title>
+</head>
+<body>
+    <h1>Library Management System </h1>
+    {% for obj in object_list %}
+    <li> {{ obj.title}} &nbsp; {{ obj.author }} &nbsp; {{ obj.category }} </li>
+    <hr/>
+    {% endfor %}
+<!--        <li> {{ object.title}} &nbsp; {{ object.author }} &nbsp; {{ object.category }} </li>&ndash;&gt;-->
+</body>
+</html>
