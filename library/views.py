@@ -41,7 +41,6 @@ class BookListView(ListView):
     model = Books
     template_name = 'home.html'
 
-class
-    (DetailView):
+class BookDetailView(DetailView):
     model = Books
     template_name = 'home.html'
