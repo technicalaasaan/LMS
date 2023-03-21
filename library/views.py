@@ -4,14 +4,20 @@ from .models import Books
 from django.core.serializers import serialize
 import json
 from .form import BookForm
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView, DeleteView
 
 # Create your views here.
+
+class Home(TemplateView):
+    template_name = 'bootstrap/dashboard.html'
+
 def add_book(request):
     if request.method == 'GET':
-        pass
+        form_data = BookForm(request.POST or None)
+        return render(request, 'sample/books.html', {'user': 'mohideen', 'form': form_data})
         # data = Book.objects.get(pk=request.GET())
         # data.delete()
     form_data = BookForm(request.POST)
@@ -39,8 +45,20 @@ class BookCreateView(CreateView):
 
 class BookListView(ListView):
     model = Books
-    template_name = 'home.html'
+    template_name = 'sample/home.html'
 
 class BookDetailView(DetailView):
     model = Books
     template_name = 'home.html'
+
+class BookUpdateView(UpdateView):
+    model = Books
+    template_name = 'books.html'
+    fields = '__all__' # ['book', 'author']
+    success_url = '/book/'
+
+class BookDeleteView(DeleteView):
+    model = Books
+    template_name = 'del_book.html'
+    fields = '__all__' # ['book', 'author']
+    success_url = '/book/'
