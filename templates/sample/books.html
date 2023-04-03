@@ -8,7 +8,7 @@
 
 <form method="post">
     {% csrf_token %}
-    {% if user != 'credo' %}
+    {% if user == 'credo' %}
         <h1> Unauthorized! </h1>
     {% else %}
     {{ form.as_p }}

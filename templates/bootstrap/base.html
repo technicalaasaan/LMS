@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
 </head>
 
@@ -67,7 +68,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <a class="collapse-item" href="{% url 'cards' %}">Cards</a>
                     </div>
                 </div>
             </li>
@@ -154,9 +155,17 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
 
-            {% block page %}
-            {% endblock %}
+                <!-- Topbar -->
+                {% include 'bootstrap/navbar.html' %}
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+
+                {% block page %}
+                {% endblock %}
+            </div>
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -193,7 +202,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
                 </div>
             </div>
         </div>
@@ -215,6 +224,8 @@
     <!-- Page level custom scripts -->
     <script src="{% static 'js/demo/chart-area-demo.js'%}"></script>
     <script src="{% static 'js/demo/chart-pie-demo.js'%}"></script>
+    {% block scripts %}
+    {% endblock %}
 
 </body>
 

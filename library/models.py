@@ -17,6 +17,7 @@ class Books(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     category = models.CharField(max_length=100, choices=book_choices, default='other')
+    title_image = models.ImageField(upload_to='books/', default='books/untitled.jpg')
 
     class Meta:
         db_table = 'books'
