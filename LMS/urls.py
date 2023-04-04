@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from library.urls import library_router
-from library.views import home, logout, Cards, add_book, BookCreateView, login, BookListView, BookDetailView, BookUpdateView, BookDeleteView, Home
+from library.views import home, mailer, logout, Cards, add_book, BookCreateView, login, BookListView, BookDetailView, BookUpdateView, BookDeleteView, Home
 
 
 urlpatterns = [
@@ -29,6 +29,7 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
     path('books/', add_book),
+    path('email/', mailer),
     path('book/<pk>/', BookDetailView.as_view()),
     path('book/<pk>/update', BookUpdateView.as_view()),
     path('book/<pk>/delete', BookDeleteView.as_view()),

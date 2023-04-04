@@ -12,6 +12,8 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.shortcuts import redirect
 from rest_framework import viewsets
 from .serializer import BooksSerializer
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 
@@ -20,6 +22,15 @@ class Home(TemplateView):
 
 class Cards(TemplateView):
     template_name = 'bootstrap/cards.html'
+
+def mailer(request):
+    res = send_mail(
+        'Sample Mail',
+        'Welcome you all!',
+        settings.EMAIL_HOST_USER,
+        [request.user.email, ]
+    )
+    return HttpResponse(f"Success - {res}")
 
 def login(request):
     if request.method == 'POST':
